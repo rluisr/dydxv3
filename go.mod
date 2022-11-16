@@ -8,7 +8,7 @@ require (
 	github.com/go-numb/go-dydx v0.0.0-20220329194222-4f7ad846fde0
 	github.com/google/go-cmp v0.5.9
 	github.com/miguelmota/go-solidity-sha3 v0.1.1
-	github.com/rluisr/wallet v0.2.1
+	github.com/rluisr/wallet v0.0.0-20221116123805-02b46f7b974a
 	github.com/satori/go.uuid v1.2.0
 	github.com/xh3b4sd/tracer v0.5.1
 	github.com/yanue/starkex v0.0.0-20220816084859-199db002c96f
