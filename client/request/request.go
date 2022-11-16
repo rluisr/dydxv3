@@ -49,27 +49,23 @@ func (r *Request) endp(pat string) string {
 }
 
 func (r *Request) request(met string, pat string, dat interface{}) ([]byte, error) {
-	var err error
+	var (
+		b   []byte
+		err error
+	)
 
-	var bod []byte
 	if dat != nil {
-		bod, err = json.Marshal(dat)
+		b, err = json.Marshal(dat)
 		if err != nil {
-			panic(err)
+			return nil, err
 		}
 	}
 
-	var end string
-	{
-		end = r.endp(pat)
-	}
+	end := r.endp(pat)
 
-	var req *http.Request
-	{
-		req, err = http.NewRequest(met, end, bytes.NewBuffer(bod))
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
+	req, err := http.NewRequest(met, end, bytes.NewBuffer(b))
+	if err != nil {
+		return nil, tracer.Mask(err)
 	}
 
 	if dat != nil {
@@ -77,47 +73,34 @@ func (r *Request) request(met string, pat string, dat interface{}) ([]byte, erro
 	}
 
 	if r.pri {
-		var now string
-		{
-			now = time.Now().UTC().Format("2006-01-02T15:04:05.000Z")
-		}
+		now := time.Now().UTC().Format("2006-01-02T15:04:05.000Z")
 
-		{
-			req.Header.Set("DYDX-SIGNATURE", r.sign(pat, met, now, bod))
-			req.Header.Set("DYDX-API-KEY", r.sec.ApiKey)
-			req.Header.Set("DYDX-TIMESTAMP", now)
-			req.Header.Set("DYDX-PASSPHRASE", r.sec.ApiPas)
-		}
+		req.Header.Set("DYDX-SIGNATURE", r.sign(pat, met, now, b))
+		req.Header.Set("DYDX-API-KEY", r.sec.ApiKey)
+		req.Header.Set("DYDX-TIMESTAMP", now)
+		req.Header.Set("DYDX-PASSPHRASE", r.sec.ApiPas)
 	}
 
-	var res *http.Response
-	{
-		res, err = r.cli.Do(req)
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
-		defer res.Body.Close()
+	res, err := r.cli.Do(req)
+	if err != nil {
+		return nil, tracer.Mask(err)
 	}
+	defer res.Body.Close()
 
-	var byt []byte
-	{
-		byt, err = ioutil.ReadAll(res.Body)
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
+	b, err = ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, tracer.Mask(err)
 	}
 
 	var lis errors.Errors
-	{
-		err = json.Unmarshal(byt, &lis)
-		if err != nil {
-			return nil, tracer.Mask(err)
-		}
+	err = json.Unmarshal(b, &lis)
+	if err != nil {
+		return nil, tracer.Mask(err)
 	}
 
 	if len(lis.Errors) != 0 {
 		return nil, tracer.Mask(fmt.Errorf(lis.Errors[0].Msg))
 	}
 
-	return byt, nil
+	return b, nil
 }

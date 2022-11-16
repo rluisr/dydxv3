@@ -11,27 +11,21 @@ import (
 func (o *O) Create(req CreateRequest) (CreateResponse, error) {
 	var err error
 
-	{
-		req.Signature, err = starkex.OrderSign(strings.TrimPrefix(o.sec.StkPrk, "0x"), o.sigpar(req))
-		if err != nil {
-			return CreateResponse{}, tracer.Mask(err)
-		}
+	req.Signature, err = starkex.OrderSign(strings.TrimPrefix(o.sec.StkPrk, "0x"), o.sigpar(req))
+	if err != nil {
+		return CreateResponse{}, tracer.Mask(err)
 	}
 
 	var byt []byte
-	{
-		byt, err = o.req.Post("orders", req)
-		if err != nil {
-			return CreateResponse{}, tracer.Mask(err)
-		}
+	byt, err = o.req.Post("orders", req)
+	if err != nil {
+		return CreateResponse{}, tracer.Mask(err)
 	}
 
 	var res CreateResponse
-	{
-		err = json.Unmarshal(byt, &res)
-		if err != nil {
-			return CreateResponse{}, tracer.Mask(err)
-		}
+	err = json.Unmarshal(byt, &res)
+	if err != nil {
+		return CreateResponse{}, tracer.Mask(err)
 	}
 
 	return res, nil
