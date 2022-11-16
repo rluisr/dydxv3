@@ -9,9 +9,9 @@ import (
 	"net/http"
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/phoebetron/dydxv3/errors"
-	"github.com/phoebetron/dydxv3/signer/user"
-	"github.com/phoebetron/dydxv3/starkx/private"
+	"github.com/rluisr/dydxv3/errors"
+	"github.com/rluisr/dydxv3/signer/user"
+	"github.com/rluisr/dydxv3/starkx/private"
 	"github.com/xh3b4sd/tracer"
 )
 
@@ -24,8 +24,7 @@ type User struct {
 // User lets the caller onboard to the dYdX exchange by creating a new account
 // for the underlying wallet.
 //
-//     signer.User(signer.Keyp())
-//
+//	signer.User(signer.Keyp())
 func (s *Signer) User(key *private.Key) User {
 	var err error
 

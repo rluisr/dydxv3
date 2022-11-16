@@ -1,8 +1,8 @@
 package private
 
 import (
-	"github.com/phoebetron/dydxv3/client/request"
-	"github.com/phoebetron/dydxv3/client/secret"
+	"github.com/rluisr/dydxv3/client/request"
+	"github.com/rluisr/dydxv3/client/secret"
 )
 
 type Config struct {

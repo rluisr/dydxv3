@@ -3,7 +3,7 @@ package market
 import (
 	"encoding/json"
 
-	"github.com/phoebetron/dydxv3/client/request"
+	"github.com/rluisr/dydxv3/client/request"
 	"github.com/xh3b4sd/tracer"
 )
 

@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/phoebetron/dydxv3/client/request"
+	"github.com/rluisr/dydxv3/client/request"
 )
 
 type Config struct {

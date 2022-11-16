@@ -3,10 +3,10 @@ package client
 import (
 	"net/http"
 
-	"github.com/phoebetron/dydxv3/client/private"
-	"github.com/phoebetron/dydxv3/client/public"
-	"github.com/phoebetron/dydxv3/client/request"
-	"github.com/phoebetron/dydxv3/client/secret"
+	"github.com/rluisr/dydxv3/client/private"
+	"github.com/rluisr/dydxv3/client/public"
+	"github.com/rluisr/dydxv3/client/request"
+	"github.com/rluisr/dydxv3/client/secret"
 )
 
 type Client struct {

@@ -1,6 +1,6 @@
 package client
 
-import "github.com/phoebetron/dydxv3/client/secret"
+import "github.com/rluisr/dydxv3/client/secret"
 
 type Config struct {
 	Sec secret.Secret

@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/phoebetron/dydxv3/client/secret"
-	"github.com/phoebetron/dydxv3/errors"
+	"github.com/rluisr/dydxv3/client/secret"
+	"github.com/rluisr/dydxv3/errors"
 	"github.com/xh3b4sd/tracer"
 )
 
