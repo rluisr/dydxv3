@@ -34,7 +34,7 @@ func (o *O) Create(req CreateRequest) (CreateResponse, error) {
 func (o *O) sigpar(req CreateRequest) starkex.OrderSignParam {
 	var net int
 	if o.tes {
-		net = 3
+		net = 5
 	} else {
 		net = 1
 	}
