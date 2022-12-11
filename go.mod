@@ -11,7 +11,7 @@ require (
 	github.com/rluisr/wallet v0.0.0-20221116123805-02b46f7b974a
 	github.com/satori/go.uuid v1.2.0
 	github.com/xh3b4sd/tracer v0.5.1
-	github.com/yanue/starkex v0.0.0-20220816084859-199db002c96f
+	github.com/yanue/starkex v0.0.0-20221207023243-8c08b150fc95
 )
 
 require (
